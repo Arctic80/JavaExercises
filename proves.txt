@@ -1,7 +1,4 @@
 Hola Mundo.
 Hello World.
-<<<<<<< .merge_file_a09332
 Branch1 edit.
-=======
-Edit2.
->>>>>>> .merge_file_a10104
+

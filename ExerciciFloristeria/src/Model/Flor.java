@@ -1,9 +1,18 @@
 package Model;
 
-import java.awt.*;
-
 
 public class Flor extends Item
 {
-    Color color = Color.BLACK;
+    private String color;
+
+    public Flor(double precio, String color) throws Exception
+    {
+        super(precio);
+        this.color = color;
+    }
+
+    public String getColor()
+    {
+        return color;
+    }
 }

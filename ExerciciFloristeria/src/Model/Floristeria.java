@@ -6,27 +6,43 @@ import java.util.List;
 
 public class Floristeria
 {
-    private String nom;
-    private List<Item> items = new ArrayList<>();
+    private List<Arbre> arbres = new ArrayList<>();
+    private List<Flor> flors = new ArrayList<>();
+    private List<Decoracio> decoracions = new ArrayList<>();
 
+    public Floristeria(){}
 
-    void afegirArbre(Arbre arbre)
+    public void afegirArbre(double precio, int altura) throws Exception
     {
-
+        arbres.add(new Arbre(precio, altura));
     }
 
-    void afegirFlor(Flor flor)
+    public void afegirFlor(double precio, String color) throws Exception
     {
-
+        flors.add(new Flor(precio, color));
     }
 
-    void afegirDecoracio(Decoracio decoracio)
+    public void afegirDecoracio(double precio, TipoMaterial tipoMaterial) throws Exception
     {
-
+        decoracions.add(new Decoracio(precio, tipoMaterial));
     }
 
-    String stock()
+    public void printStock()
     {
-        return "";
+        StringBuilder sb = new StringBuilder();
+        sb.append("STOCK: \n\n");
+
+        sb.append("ARBRES: \n");
+        for (Arbre a : arbres) sb.append("ID: " ).append(a.getId()).append("   PREU: ").append(a.getPrecio()).append("  ALÇADA: ").append(a.getAltura()).append("\n");
+        sb.append("\n");
+
+        sb.append("FLORS: \n");
+        for (Flor f : flors) sb.append("ID: " ).append(f.getId()).append("   PREU: ").append(f.getPrecio()).append("  COLOR: ").append(f.getColor()).append("\n");
+        sb.append("\n");
+
+        sb.append("FLORS: \n");
+        for (Decoracio d : decoracions) sb.append("ID: " ).append(d.getId()).append("   PREU: ").append(d.getPrecio()).append("  MATERIAL: ").append(d.getTipoMaterial()).append("\n");
+
+        System.out.println(sb.toString());
     }
 }

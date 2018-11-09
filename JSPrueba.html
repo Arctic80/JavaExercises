@@ -1,0 +1,65 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <div id = div1>
+        <h1 id = texto >Lista Películas</h1>
+        <input id = titulo type = text value = Título><input id = año type = text value = Año>
+        <button id = bAñadir >Añadir</button>
+        <button id = bMostrar >Printar lista</button>
+        <button id = bBorrar >Borrar</button>
+        <ul id = lista>
+        </ul>
+        <br>
+    </div>
+
+    <div id = div2>
+
+    </div>
+
+<script>
+
+    var listaPeliculas = []
+        
+    document.getElementById("bAñadir").onclick = function(e)
+    {
+        var titulo = document.getElementById("titulo").value
+        var año = document.getElementById("año").value
+
+        document.getElementById("lista").appendChild(document.createElement("li")).textContent = titulo + ", " + año
+        
+        var pelicula = new Object()
+        pelicula.titulo = titulo
+        pelicula.año = año
+        // pelicula.director = director
+        // etc
+        listaPeliculas.push(pelicula)
+    }
+
+    document.getElementById("bMostrar").onclick = function(e)
+    {
+        div2.textContent = JSON.stringify(listaPeliculas)
+    }
+
+    document.getElementById("bBorrar").onclick = function(e)
+    {
+        var nodeLista = document.getElementById("lista")
+        while (nodeLista != null && nodeLista.firstChild) nodeLista.removeChild(nodeLista.firstChild)
+        
+        document.getElementById("div2").textContent = ""
+        
+        listaPeliculas = []
+
+        document.getElementById("titulo").value = "Título"
+        document.getElementById("año").value = "Año"
+    }
+
+</script>
+
+</body>
+</html>

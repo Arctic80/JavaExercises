@@ -15,15 +15,6 @@ GROUP BY f.origin, f.colYear, f.colMonth
 ORDER BY f.origin, f.colYear, f.colMonth;
 
 -- Exercici 4.
--- Efectivamente la sintaxis SQL92 introduce INNER JOIN vs el join implicito con WHERE para separar conceptos de tablas involucradas vs filtro. +1!!
--- EXPLAIN
-SELECT a.city, f.Origin, f.colYear, f.colMonth, AVG(ArrDelay) as retrasoSalida
-FROM flights f, usairports a
-WHERE f.origin = a.iata
-GROUP BY f.origin, f.colMonth
-ORDER BY f.origin, f.colYear, f.colMonth;
-   
--- EXPLAIN
 SELECT a.city, f.Origin, f.colYear, f.colMonth, AVG(ArrDelay) as retrasoSalida
 FROM flights f
 INNER JOIN usairports a
@@ -41,7 +32,6 @@ GROUP BY f.UniqueCarrier
 ORDER BY cancelaciones DESC;
 
 -- Exercici 6
--- Ojo que TailNum tiene cientos de rows con valor 'NA'
 SELECT f.TailNum, SUM(f.distance) AS distanciaTotal
 FROM flights f
 WHERE f.TailNum <> 'NA'
@@ -49,21 +39,9 @@ GROUP BY f.TailNum
 ORDER BY distanciaTotal DESC
 LIMIT 10;
 
--- Exercici 7 Eficiente, creo
--- EXPLAIN
+-- Exercici 7
 SELECT f.UniqueCarrier, AVG(f.ArrDelay) AS retrasoMedio
 FROM flights f
 GROUP BY f.UniqueCarrier
 HAVING retrasoMedio > 10
 ORDER BY retrasoMedio DESC;
-
--- Exercici 7 Ineficiente, creo
--- EXPLAIN
-SELECT *
-FROM (
-	SELECT f.UniqueCarrier, AVG(f.ArrDelay) AS retrasoMedio
-	FROM flights f
-	GROUP BY f.UniqueCarrier
-	ORDER BY retrasoMedio DESC
-	) AS retrasosMediosPorCarrier
-WHERE retrasoMedio > 10;
